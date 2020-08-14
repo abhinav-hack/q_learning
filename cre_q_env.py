@@ -17,7 +17,7 @@ epsilon = 0.0
 EPS_DECAY = 0.9998
 SHOW_EVERY = 200
 
-start_q_table = "/root/Documents/qtable.pickel"
+start_q_table = "/root/Documents/reinforcement/qtable.pickel"   # add None for the first run
 
 LEARNING_RATE = 0.1
 DISCOUNT = 0.95
@@ -166,5 +166,5 @@ plt.xlabel("episode #")
 plt.show()
 
 print("match lose:",lose_count)
-with open(f"/root/Documents/qtable.pickel", "wb") as f:
+with open(f"/root/Documents/reinforcement/qtable.pickel", "wb") as f:     # change path to your directory
     pickle.dump(q_table, f)
