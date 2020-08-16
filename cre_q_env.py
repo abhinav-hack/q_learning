@@ -9,7 +9,7 @@ import time
 style.use("ggplot")
 
 SIZE = 10
-HM_EPISODES = 20000
+HM_EPISODES = 2000
 MOVE_PENALTY = 1 
 ENEMY_PENALTY = 300
 FOOD_REWARD = 25
@@ -41,22 +41,22 @@ class Blob:
     def __sub__(self, other):
         return  (self.x - other.x, self.y - other.y)
 
-    def action(self, choice):
-        if choice == 0 :
-            self.move(x=1, y=0)
+    def action(self, choice):               # added act to take action with x,y =0 
+        if choice == 0 :                                #only will able to  move veritcally and hori..
+            self.move(x=1, y=0, act=True)
         if choice == 1 :
-            self.move(x=-1, y=0)
+            self.move(x=-1, y=0, act=True)
         if choice == 2 :
-            self.move(x=0, y=1)
+            self.move(x=0, y=1, act=True)
         if choice == 3 : 
-            self.move(x=0, y=-1)
-    def move(self, x=False, y=False):
-        if not x:
+            self.move(x=0, y=-1, act=True)
+    def move(self, x=False, y=False, act=False):        # act false will move any direction diagonally
+        if act == False:
             self.x += np.random.randint(-1, 2)
         else:
             self.x += x
 
-        if not y:
+        if act == False:
             self.y += np.random.randint(-1, 2)
         else:
             self.y += y
@@ -164,6 +164,7 @@ plt.plot([i for i in range(len(moving_avg))], moving_avg)
 plt.ylabel(f"rewad {SHOW_EVERY} ma")
 plt.xlabel("episode #")
 plt.show()
+cv.destroyAllWindows()
 
 print("match lose:",lose_count)
 with open(f"/root/Documents/reinforcement/qtable.pickel", "wb") as f:     # change path to your directory
