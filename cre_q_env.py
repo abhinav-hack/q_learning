@@ -9,7 +9,7 @@ import time
 style.use("ggplot")
 
 SIZE = 10
-HM_EPISODES = 2000
+HM_EPISODES = 20000
 MOVE_PENALTY = 1 
 ENEMY_PENALTY = 300
 FOOD_REWARD = 25
@@ -126,6 +126,7 @@ for episode in range(HM_EPISODES):
             new_q = FOOD_REWARD
         elif reward == -ENEMY_PENALTY:
             new_q = -ENEMY_PENALTY
+            lose_count += 1
         else:
             new_q = (1- LEARNING_RATE)* current_q + LEARNING_RATE*(reward+ DISCOUNT* max_future_q)
 
@@ -147,8 +148,7 @@ for episode in range(HM_EPISODES):
                 if cv.waitKey(1) & 0xFF == ord("q"):
                     break
             
-            if reward == -ENEMY_PENALTY:
-                lose_count += 1
+                
         episode_reward += reward
         if reward == FOOD_REWARD or reward == -ENEMY_PENALTY:
             break 
