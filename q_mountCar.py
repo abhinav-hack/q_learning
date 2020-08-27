@@ -98,3 +98,6 @@ plt.plot(aggr_ep_rewards['ep'], aggr_ep_rewards['min'], label= 'min')
 plt.plot(aggr_ep_rewards['ep'], aggr_ep_rewards['max'], label= 'max')
 plt.legend(loc='best')
 plt.show()
+
+
+# adding extra comment to check git through vscode
